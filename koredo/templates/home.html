@@ -1,0 +1,47 @@
+<!-- home.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+
+
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <section class="section">
+                    <div class="columns">
+                        <div class="column is-8 is-offset-2">
+                            <h1>Latest Posts</h1>
+                            {% for category, post in latest_posts.items %}
+
+                                <div class="content is-medium">
+                                    <h2>{{ category }}</h2>
+                                    {% if post %}
+                                        {% if post.image %}
+                                            <figure class="image">
+                                                <img src="{{ post.image.url }}" 
+                                            </figure>
+                                        {% endif %}
+                                        <h2 class="subtitle is-4">{{ post.body | truncatewords:30  }}</h2>
+                                        <a href="{% url 'post_detail' category=category.slug slug=post.slug %}">Read More</a>
+                                        <h1 class="title">{{ post.title }}</h1>
+                                        <p>Posted by: {{ post.author.get_full_name }}</p>
+                                    </a>
+                                    {% else %}
+                                    <p>No posts available for this category.</p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+

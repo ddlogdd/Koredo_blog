@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Koredo Blog{% endblock %}</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/bulma@0.9.3/css/bulma.min.css"
+/>
+<link
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+  crossorigin="anonymous"
+/>
+  <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+      nav.navbar {
+        height: 6rem !important;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+      }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Koredo Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='relationship' %}">Relationship<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Travel' %}">Travel <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Career' %}">Career<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Faith' %}">Faith<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Jobs' %}">Jobs<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Pets' %}">Pets & Pet Lovers<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Cars' %}">Cars<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list' category='Movies' %}">Movies<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active" class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item active" class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+        <!-- Image Section -->
+        <h2 class="my-4">Image Section</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <img class="img-fluid rounded mb-4" src="https://via.placeholder.com/300" alt="">
+          </div>
+          <div class="col-md-4">
+            <img class="img-fluid rounded mb-4" src="https://via.placeholder.com/300" alt="">
+          </div>
+          <div class="col-md-4">
+            <img class="img-fluid rounded mb-4" src="https://via.placeholder.com/300" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+        <div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="{% url 'post_list' category='relationship' %}">Relationship</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Travel' %}">Travel</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Career' %}">Career</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Faith' %}">Faith</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Jobs' %}">Jobs</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Pets' %}">Pets & Pet Lovers</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Cars' %}">Cars</a>
+              </li>
+              <li>
+                <a href="{% url 'post_list' category='Movies' %}">Movies</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-3 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; 2024</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+

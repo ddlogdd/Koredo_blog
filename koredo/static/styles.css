@@ -1,0 +1,102 @@
+/* Custom CSS styles */
+
+/* Navbar */
+.navbar {
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+/* Page Content */
+.container {
+  max-width: 960px;
+}
+
+.my-4 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-text {
+  color: #555;
+}
+
+.card-footer {
+  color: #6c757d;
+}
+
+/* Image Section */
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.img-section {
+  margin-bottom: 30px;
+}
+
+.img-section h2 {
+  margin-bottom: 20px;
+}
+
+/* Sidebar */
+.list-unstyled {
+  padding-left: 0;
+}
+
+.list-unstyled li {
+  margin-bottom: 10px;
+}
+
+/* Categories Sidebar */
+.categories-sidebar {
+  position: sticky;
+  top: 0;
+}
+
+.categories-sidebar .card {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+}
+
+/* Pagination */
+.pagination {
+  justify-content: center;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page-link {
+  color: #007bff;
+}
+
+.page-link:hover {
+  color: #0056b3;
+}

@@ -1,0 +1,28 @@
+<!-- post_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+{{ category.name }} - My Blog
+{% endblock %}
+
+{% block content %}
+<h2>{{ category.name }}</h2>
+{% if posts %}
+<ul class="post-list">
+    {% for post in posts %}
+    <li class="post">
+        <h3>{{ post.title }}</h3>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+        <p>{{ post.body | truncatewords:30 }}</p> <!-- Displaying a short excerpt -->
+        <a href="{% url 'post_detail' category=category.slug slug=post.slug %}">Read More</a>
+        <p>Posted by: {{ post.author.get_full_name }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No posts available for this category.</p>
+{% endif %}
+{% endblock %}
