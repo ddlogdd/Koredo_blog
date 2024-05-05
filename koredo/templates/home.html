@@ -29,7 +29,7 @@
                                         <h2 class="subtitle is-4">{{ post.body | truncatewords:30  }}</h2>
                                         <a href="{% url 'post_detail' category=category.slug slug=post.slug %}">Read More</a>
                                         <h1 class="title">{{ post.title }}</h1>
-                                        <p>Posted by: {{ post.author.get_full_name }}</p>
+                                        <p>Posted by: {{ post.author}}</p>
                                     </a>
                                     {% else %}
                                     <p>No posts available for this category.</p>

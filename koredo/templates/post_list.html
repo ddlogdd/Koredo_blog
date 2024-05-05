@@ -18,7 +18,7 @@
         {% endif %}
         <p>{{ post.body | truncatewords:30 }}</p> <!-- Displaying a short excerpt -->
         <a href="{% url 'post_detail' category=category.slug slug=post.slug %}">Read More</a>
-        <p>Posted by: {{ post.author.get_full_name }}</p>
+        <p>Posted by: {{ post.author }}</p>
     </li>
     {% endfor %}
 </ul>

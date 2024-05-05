@@ -32,11 +32,6 @@ class PostListView(ListView):
         context['category'] = self.category
         return context
 
-
-
-
-
-
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
@@ -50,8 +45,4 @@ class PostDetailView(DetailView):
             comment.post = post
             comment.save()
             return redirect('post_detail', category=post.categories.first().slug, slug=post.slug)
-
-        
-
         return render(request, self.template_name, {'post': post, 'form': form})
-
