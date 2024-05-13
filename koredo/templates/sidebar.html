@@ -1,0 +1,58 @@
+{% block sidebar %}
+<main id="main" role="main">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search For ..." aria-label="Search For" aria-describedby="basic-addon">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">Go!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card my-3">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="{% url 'post_list' category='relationship' %}">Relationship</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Travel' %}">Travel</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Career' %}">Career</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Faith' %}">Faith</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Jobs' %}">Jobs</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Pets' %}">Pets</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="{% url 'post_list' category='Cars' %}">Cars</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'post_list' category='Movies' %}">Movies</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock sidebar %}

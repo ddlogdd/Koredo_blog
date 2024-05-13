@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <section id="contact" class="contact mb-5">
+        <div class="container" data-aos="fade-up">
+            <br><br>
+          <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+              <h1 class="page-title">Contact us</h1>
+            </div>
+          </div>
+  
+          <div class="row gy-4">
+  
+            <div class="col-md-4">
+              <div class="info-item">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <address>Lagos, Nigeria</address>
+              </div>
+            </div><!-- End Info Item -->
+  
+            <div class="col-md-4">
+              <div class="info-item info-item-borders">
+                <i class="bi bi-phone"></i>
+                <h3>Phone Number</h3>
+                <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              </div>
+            </div><!-- End Info Item -->
+  
+            <div class="col-md-4">
+              <div class="info-item">
+                <i class="bi bi-envelope"></i>
+                <h3>Email</h3>
+                <p><a href="mailto:info@example.com">info@example.com</a></p>
+              </div>
+            </div><!-- End Info Item -->
+  
+          </div>
+</main><!-- End #main -->
+{% endblock %}
+{% block recent_posts %}
+          <div class="col-lg-4">
+            <h3 class="footer-heading"></h3>
+            {{ latest_posts }}
+            {% for category, post in latest_posts.items %}
+              {% if post %}
+                <ul class="footer-links footer-blog-entry list-unstyled">
+                  <li>
+                    <a href="{% url 'post_detail' category=category.slug slug=post.slug %}" class="d-flex align-items-center">
+                      {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="" class="img-fluid me-3">
+                      {% endif %}
+                      <div>
+                        <div class="post-meta d-block"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span>{{ post.created |date:'M-d-Y ' }}</span></div>
+                        <span>{{ post.title }}</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              {% endif %}
+            {% endfor %}
+{% endblock %}

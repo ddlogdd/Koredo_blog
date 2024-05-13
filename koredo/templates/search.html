@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+  <br><br><br><br><br>
+  <form action="{% url 'search' %}" method="GET">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+
+<!-- ======= Search Results ======= -->
+<section id="search-result" class="search-result">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h3 class="category-title">Search Results for "{{ query }}"</h3>
+        {% if posts %}
+          {% for post in posts reversed %}
+          {% if query|lower in post.title|lower or query|lower in post.body|lower or query|lower in post.categories.first.name|lower %}
+        <div class="d-md-flex post-entry-2 small-img">
+          {% if post.image %}
+            <a href="" class="me-4 thumbnail">
+              <img src="{{ post.image.url }}" alt="" class="img-fluid">
+            </a>
+          {% endif %}
+          <div>
+            <div class="post-meta"><span class="date">{{ post.categories.first.name }}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+            <h3><a href="{% url 'post_detail' category=post.categories.first.slug slug=post.slug %}">{{ post.title }}</a></h3>
+            <p>{{ post.body | truncatewords:30 }}</p>
+            <div class="d-flex align-items-center author">
+              <div class="name">
+                <h3 class="m-0 p-0">{{ post.author }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+      </div>
+    </div>
+  </div>
+</main><!-- End #main -->
+{% endblock %}

@@ -1,58 +1,141 @@
-<!-- post_detail.html -->
-
-{% extends 'base.html' %}
-
-
-{% block title %}{{ post.title }} | {% endblock %}
+{% extends 'home.html' %}
 
 {% block content %}
-<section class="hero">
-    <div class="hero-body">
+<main id="main">
+    
+    <section class="single-post-content">
         <div class="container">
-            <section class="section">
-                {% if post.image %}
-                    <figure class="image mb-6">
-                        <img src="{{ post.image.url }}" 
-                    </figure>
-                {% endif %}
+            <div class="row">
+                <div class="col-md-9 post-content" data-aos="fade-up">
 
-                <div class="columns">
-                    <div class="column is-8 is-offset-2">
-                        <div class="content is-medium">
-                            
-                            <h2 class="subtitle is-4">{{ post.created |date:'M-d-Y ' }}</h2>
-                            <h1 class="title">{{ post.title }}</h1>                               
+                    <!-- ======= Single Post Content ======= -->
+                    <div class="single-post">
+                        <div class="post-meta"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span></span></div>
+                            <h1 class="mb-5">{{ post.title }}</h1>
+                            {% if post.image %}  
+                                <figure class="my-4">
+                                    <img src="{{ post.image.url }}" alt="" class="auto-fit-image" width="80%">
+                                    
+                                </figure>
+                            {% endif %}
                             <p>{{ post.body }}</p>
-
                             
-                            <hr>
+                        </div><!-- End Single Post Content -->
 
-                            <h2 class="subtitle is-4">Comments</h2>
-
-                            <form method="post" class="mb-6">
-                                {% csrf_token %}
-                                {{ form.as_p}}
-
-                                <div class="field">
-                                    <div class="control">
-                                        <button class="button is-success">Submit comment</button>
-                                    </div>
+                    <!-- ======= Comments ======= -->
+                    <div class="comments">
+                        <h5 class="comment-title py-4">{{ post.comments.count }} Comments</h5>
+                        {% for comment in post.comments.all %}
+                        <div class="comment d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <div class="avatar avatar-sm rounded-circle">
+                                    <img class="" src="" alt="" class="img-fluid">
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-2 ms-sm-3">
+                            <div class="comment-meta d-flex align-items-baseline">
+                                <h6 class="me-2">{{ comment.name }}</h6>
+                                <span class="text-muted">{{ comment.created_at|timesince }} ago</span>
+                            </div>
+                            <div class="comment-body">
+                                {{ comment.message }}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>No comments yet.</p>
+                        {% endfor %}
+                        
+                    </div><!-- End Comments -->
 
-                            {% for comment in post.comments.all %}
-                                <article class="media box">
-                                    <div class="media-content">
-                                        <strong>{{ comment.name }}</strong> <small>{{ comment.created_at|timesince }} ago</small><br>
-                                        {{ comment.body }}
-                                    </div>
-                                </article>
+                        <!-- ======= Comments Form ======= -->
+                    <div class="row justify-content-center mt-5">
+
+                        <div class="col-lg-12">
+                            <h5 class="comment-title">Leave a Comment</h5>
+                            <form method ="post" action="{% url 'post_detail' category=post.categories.first.slug slug=post.slug %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                <label for="comment-name">Name</label>
+                                <input type="text" class="form-control" id="comment-name" name="name" placeholder="Enter your name">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                <label for="comment-email">Email</label>
+                                <input type="text" class="form-control" id="comment-email" name="email" placeholder="Enter your email">
+                                </div>
+                                <div class="col-12 mb-3">
+                                <label for="comment-message">Message</label>
+            
+                                <textarea class="form-control" id="comment-message" name="message" placeholder="Enter your name" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="col-12">
+                                <input type="submit" class="btn btn-primary" value="Post comment">
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div><!-- End Comments Form -->
+
+                </div>
+                <div class="col-md-3">
+                    
+                   
+                    <!-- ======= Sidebar ======= -->
+                    <div class="aside-block">
+
+                        <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Other Posts</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content" id="pills-tabContent">
+                        {% if other_posts %}
+                            {% for other_post in other_posts %}
+                                {% if forloop.counter <= 1 %}
+                            <!-- Popular -->
+                            <div class="tab-pane fade show active" id="pills-popular{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-popular-tab">
+                                <div class="post-entry-1 border-bottom">
+                                    <div class="post-meta"><span class="date">POSTED</span> <span class="mx-1">&bullet;</span> <span>{{ other_post.created|date:'M-d-Y' }}</span></div>
+                                    <h2 class="mb-2"><a href="{% url 'post_detail' category=other_post.categories.first.slug slug=other_post.slug %}">{{ other_post.title }}</a></h2>
+                                    <span class="author mb-3 d-block">{{ other_post.author}}</span>
+                                    <p> To view other  similar posts, scroll down to recent posts</p>
+                                </div>
+                            </div> <!-- End Popular -->
+                                {% endif %}
                             {% endfor %}
+                        {% endif %}
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+    
+</main><!-- End #main -->
 {% endblock %}
+{% block recent_posts %}
+          <div class="col-lg-4">
+            <h3 class="footer-heading">Recent Posts</h3>
+            {% if other_posts %}
+                {% for other_post in other_posts %}
+              
+                <ul class="footer-links footer-blog-entry list-unstyled">
+                  <li>
+                    <a href="{% url 'post_detail' category=other_post.categories.first.slug slug=other_post.slug %}" class="d-flex align-items-center">
+                      {% if other_post.image %}
+                        <img src="{{ other_post.image.url }}" alt="" class="img-fluid me-3">
+                      {% endif %}
+                      <div>
+                        <div class="post-meta d-block"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span>{{ other_post.created |date:'M-d-Y ' }}</span></div>
+                        <span>{{ other_post.title }}</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                {% endfor %}
+            {% endif %}
+          </div>
+{% endblock %}
+       
