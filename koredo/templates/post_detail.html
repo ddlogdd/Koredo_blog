@@ -2,7 +2,7 @@
 
 {% block content %}
 <main id="main">
-    
+
     <section class="single-post-content">
         <div class="container">
             <div class="row">
@@ -11,18 +11,23 @@
                     <!-- ======= Single Post Content ======= -->
                     <div class="single-post">
                         <div class="post-meta"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span></span></div>
-                            <h1 class="mb-5">{{ post.title }}</h1>
-                            {% if post.image %}  
+                            <font color="navy"><h1 class="mb-5">{{ post.title }}</h1></font>
+                            {% if post.image %}
                                 <figure class="my-4">
                                     <img src="{{ post.image.url }}" alt="" class="auto-fit-image" width="80%">
-                                    
+
                                 </figure>
                             {% endif %}
-                            <p>{{ post.body }}</p>
-                            
+                            <p>{{ post.body |safe  }}</p>
+
                         </div><!-- End Single Post Content -->
 
                     <!-- ======= Comments ======= -->
+
+
+    For more information or consults please <a href="mailto:info@buzzcruize.com.ng"><font color="navy">contact</font></a>
+
+
                     <div class="comments">
                         <h5 class="comment-title py-4">{{ post.comments.count }} Comments</h5>
                         {% for comment in post.comments.all %}
@@ -45,7 +50,7 @@
                         {% empty %}
                         <p>No comments yet.</p>
                         {% endfor %}
-                        
+
                     </div><!-- End Comments -->
 
                         <!-- ======= Comments Form ======= -->
@@ -66,7 +71,7 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                 <label for="comment-message">Message</label>
-            
+
                                 <textarea class="form-control" id="comment-message" name="message" placeholder="Enter your name" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="col-12">
@@ -79,8 +84,8 @@
 
                 </div>
                 <div class="col-md-3">
-                    
-                   
+
+
                     <!-- ======= Sidebar ======= -->
                     <div class="aside-block">
 
@@ -89,7 +94,7 @@
                             <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Other Posts</button>
                             </li>
                         </ul>
-                        
+
                         <div class="tab-content" id="pills-tabContent">
                         {% if other_posts %}
                             {% for other_post in other_posts %}
@@ -112,7 +117,7 @@
             </div>
         </div>
     </section>
-    
+
 </main><!-- End #main -->
 {% endblock %}
 {% block recent_posts %}
@@ -120,7 +125,7 @@
             <h3 class="footer-heading">Recent Posts</h3>
             {% if other_posts %}
                 {% for other_post in other_posts %}
-              
+
                 <ul class="footer-links footer-blog-entry list-unstyled">
                   <li>
                     <a href="{% url 'post_detail' category=other_post.categories.first.slug slug=other_post.slug %}" class="d-flex align-items-center">
@@ -138,4 +143,3 @@
             {% endif %}
           </div>
 {% endblock %}
-       

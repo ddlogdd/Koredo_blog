@@ -6,13 +6,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>what's the 411 - Index</title>
+  <title>Buzz Cruize</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{% static 'assets/img/logo.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="{% static 'https://fonts.googleapis.com' %}">
@@ -41,9 +41,9 @@
 
       <a href="" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-       
-        <h1 class="page-title"><span style="font-size: 48px;">What's the 411</span></h1>
+         <img src="{% static 'assets/img/logo.png' %}" alt="">
+
+        <h1 style="font-family:Mistral;" class="page-title"><span style="font-size: 30px;"><font color="navy">BuzzCruize</font></span></h1>
 
       </a>
 
@@ -62,7 +62,7 @@
                   <li><a href="{% url 'post_list' category='Jobs' %}">Jobs</a></li>
                   <li><a href="{% url 'post_list' category='Sport' %}">Sport</a></li>
                   <li><a href="{% url 'post_list' category='Health' %}">Health</a></li>
-                  <li><a href="{% url 'post_list' category='Money' %}">Make Money</a></li>
+                  <li><a href="{% url 'post_list' category='Business' %}">Business</a></li>
                   <li><a href="{% url 'post_list' category='Tech' %}">Tech and Tech Products</a></li>
                 </ul>
               </li>
@@ -73,7 +73,7 @@
           </li>
           <li><a href="{% url 'search' %}">Search</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'about' %}">Contact</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -83,7 +83,7 @@
         <a href="#" class="mx-2"><span class=""></span></a>
         <a href="#" class="mx-2"><span class=""></span></a>
 
-        
+
         <i class="bi bi-list mobile-nav-toggle"></i>
 
         <!-- ======= Search Form ======= -->
@@ -124,22 +124,20 @@
                       <div>
                   {% endif %}
                       <div class="post-meta"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span>{{ post.created |date:'M-d-Y ' }}</span></div>
-                      <h3><a href="{% url 'post_detail' category=category.slug slug=post.slug %}">{{ post.title }}</a></h3>
-                      <p>{{ post.body | truncatewords:30 }}</p>
+                      <h3><a href="{% url 'post_detail' category=category.slug slug=post.slug %}"><font color="navy">{{ post.title }}</font> </a></h3>
+                      <p>{{ post.body |safe | truncatewords:30 }}</p>
                     </div>
-                  </div>       
+                  </div>
               </div>
-          
+
             <div class="col-md-3">
-                
-                  {% if forloop.counter <= 4 %}
+
+                  {% if forloop.counter <= 12 %}
                       {% if post %}
                           <div class="post-entry-1 border-bottom">
-                              <div class="post-meta"><span class="date">{{ post.title }}</span> <span class="mx-1">&bullet;</span> <span>{{ post.created |date:'M-d-Y ' }}</span></div>
-                          
-                              <h2 class="mb-2"><a href="{% url 'post_detail' category=category.slug slug=post.slug %}">{{ post }}</a></h2>
-                              <span class="author mb-3 d-block">{{post.author}}</span>
-                          
+                              <div class="post-meta"><span class="date"><a href="{% url 'post_detail' category=category.slug slug=post.slug %}"><font color="navy">Blog<span class="mx-1">&bullet;</span>{{ post.title }}<span class="mx-1">&bullet;</span>Author:{{post.author}}<span class="mx-1">&bullet;</span></font></a></span></div>
+                              <h2 class="mb-2"><a href="{% url 'post_detail' category=category.slug slug=post.slug %}"></a></h2>
+                              <span class="author mb-3 d-block"></span>
                           </div>
                       {% endif %}
                   {% endif %}
@@ -159,16 +157,16 @@
 
         <div class="row g-5">
           <div class="col-lg-4">
-            <h3 class="footer-heading">About what's the411Blog</h3>
-            <p>Welcome to what's the 411, where tou can find the latest information on Career, Travel, Faith, Cars, Movies,  Jobs, Relationship, Pet and many more.</p>
-            <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+            <h3 class="footer-heading">Buzz Cruize</h3>
+            <p>Welcome to Buzz Cruize, stay informed, discover new trends, happenings, and let your mind stay active.</p>
+            <p><a href="{% url 'about' %}" class="footer-link-more">Learn More</a></p>
           </div>
           <div class="col-6 col-lg-2">
             <h3 class="footer-heading">Navigation</h3>
             <ul class="footer-links list-unstyled">
               <li><a href="{% url 'home' %}"><i class="bi bi-chevron-right"></i> Home</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+              <li><a href="{% url 'about' %}"><i class="bi bi-chevron-right"></i> About us</a></li>
+              <li><a href="{% url 'contact' %}"><i class="bi bi-chevron-right"></i> Contact</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
@@ -181,7 +179,7 @@
               <li><a href="{% url 'post_list' category='Jobs' %}"><i class="bi bi-chevron-right"></i> Jobs</a></li>
               <li><a href="{% url 'post_list' category='Sport' %}"><i class="bi bi-chevron-right"></i> Sport</a></li>
               <li><a href="{% url 'post_list' category='Health' %}"><i class="bi bi-chevron-right"></i> Health</a></li>
-              <li><a href="{% url 'post_list' category='Money' %}"><i class="bi bi-chevron-right"></i> Make Money</a></li>
+              <li><a href="{% url 'post_list' category='Business' %}"><i class="bi bi-chevron-right"></i> Business</a></li>
               <li><a href="{% url 'post_list' category='Tech' %}"><i class="bi bi-chevron-right"></i> Tech and Tech Products</a></li>
               <li><a href="{% url 'post_list' category='Pets' %}"><i class="bi bi-chevron-right"></i> Pets & Pet Lovers</a></li>
               <li><a href="{% url 'post_list' category='Cars' %}"><i class="bi bi-chevron-right"></i> Cars</a></li>
@@ -220,15 +218,16 @@
         <div class="row justify-content-between">
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
-              © Copyright <strong><span>what's the411Blog</span></strong>. All Rights Reserved
+              © Copyright <strong><span>Buzz Cruize</span></strong>. All Rights Reserved
             </div>
 
             <div class="credits">
-             
-              Designed by <a href="daviddanielcareer@gmail.com">David Daniel</a>
+
+              Designed by <a href="mailto:daviddanielcareer@gmail.com">David Daniel</a>
             </div>
 
           </div>
+
 
           <div class="col-md-6">
             <div class="social-links mb-3 mb-lg-0 text-center text-md-end">

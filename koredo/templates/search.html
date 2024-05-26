@@ -46,3 +46,25 @@
   </div>
 </main><!-- End #main -->
 {% endblock %}
+{% block recent_posts %}
+          <div class="col-lg-4">
+            <h3 class="footer-heading"></h3>
+            {{ latest_posts }}
+            {% for category, post in latest_posts.items %}
+              {% if post %}
+                <ul class="footer-links footer-blog-entry list-unstyled">
+                  <li>
+                    <a href="{% url 'post_detail' category=category.slug slug=post.slug %}" class="d-flex align-items-center">
+                      {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="" class="img-fluid me-3">
+                      {% endif %}
+                      <div>
+                        <div class="post-meta d-block"><span class="date">{{ category }}</span> <span class="mx-1">&bullet;</span> <span>{{ post.created |date:'M-d-Y ' }}</span></div>
+                        <span>{{ post.title }}</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              {% endif %}
+            {% endfor %}
+{% endblock %}
