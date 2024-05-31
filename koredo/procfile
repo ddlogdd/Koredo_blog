@@ -1,1 +1,0 @@
-web: gunicorn Koredo_blog.wsgi --log-file -
